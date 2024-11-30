@@ -19,9 +19,7 @@ export default function TranskripPage() {
 
     try {
       const response = await fetch(
-        `https://apiv2.anthiago.com/transkrip?get_video=${encodeURIComponent(
-          urlInput
-        )}&codeL=id`
+        `/api/transkrip?get_video=${encodeURIComponent(urlInput)}`
       );
       const data = await response.json();
 
@@ -72,79 +70,74 @@ export default function TranskripPage() {
       </div>
 
       <style jsx>{`
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
         .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+          max-width: 600px;
+          margin: 50px auto;
+          background: #fff;
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
         }
 
         h2 {
-            text-align: center;
-            color: #333;
+          text-align: center;
+          color: #333;
         }
 
-        input[type="text"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
+        input {
+          width: calc(100% - 22px);
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 16px;
         }
 
         button {
-            width: 100%;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
+          width: 100%;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          padding: 12px;
+          font-size: 16px;
+          border-radius: 4px;
+          cursor: pointer;
         }
 
         button:hover {
-            background-color: #218838;
+          background-color: #218838;
         }
 
         .result {
-            margin-top: 20px;
-            background: #f1f1f1;
-            padding: 15px;
-            border-radius: 4px;
-            display: none;
+          margin-top: 20px;
+          background: #f1f1f1;
+          padding: 15px;
+          border-radius: 4px;
         }
 
         .error {
-            color: red;
-            text-align: center;
-            margin-top: 10px;
+          color: red;
+          text-align: center;
+          margin-top: 10px;
         }
 
         .loader {
-            border: 4px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 4px solid #3498db;
-            width: 30px;
-            height: 30px;
-            animation: spin 2s linear infinite;
-            margin: 0 auto;
-            display: none;
+          border: 4px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 4px solid #3498db;
+          width: 30px;
+          height: 30px;
+          animation: spin 2s linear infinite;
+          margin: 0 auto;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       `}</style>
     </>
