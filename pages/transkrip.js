@@ -36,16 +36,20 @@ export default function TranskripPage() {
     }
   };
 
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      alert(`Teks berhasil disalin: "${text}"`);
-    });
+  const copyToClipboard = () => {
+    if (result) {
+      const fullText = result.subtitles.map((sub) => sub.f).join("\n");
+      navigator.clipboard.writeText(fullText).then(() => {
+        alert("Teks berhasil disalin!");
+      });
+    }
   };
 
   return (
     <>
       <Head>
         <title>Transkrip YouTube</title>
+        <link rel="icon" href="../img/icon.png" />
       </Head>
       <div className="container">
         <h2>Transkrip Video YouTube</h2>
@@ -62,39 +66,43 @@ export default function TranskripPage() {
         {error && <div className="error">{error}</div>}
 
         {result && (
-          <div className="result">
-            <h3>{result.title}</h3> {/* Bagian "title" ditampilkan */}
-            <ul>
-              {result.subtitles.map((sub, index) => (
-                <li
-                  key={index}
-                  onClick={() => copyToClipboard(sub.f)} // Klik untuk menyalin teks
-                  className="subtitle"
-                >
-                  {sub.f} <small>(Detik: {sub.t})</small>
-                </li>
-              ))}
-            </ul>
+          <div className="result" onClick={copyToClipboard}>
+            <h3>{result.title}</h3>
+            <div className="transkrip">
+              {result.subtitles.map((sub) => sub.f).join("\n")}
+            </div>
+            <p className="hint">Klik untuk menyalin seluruh transkrip</p>
           </div>
         )}
       </div>
 
       <style jsx>{`
+        body {
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(to bottom, #6ab7ff, #b3e5fc);
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Arial', sans-serif;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Crect fill='%23b3e5fc' width='1600' height='900'/%3E%3Ccircle cx='400' cy='300' r='400' fill='%236ab7ff' opacity='0.6'/%3E%3Ccircle cx='800' cy='600' r='600' fill='%236ab7ff' opacity='0.4'/%3E%3Ccircle cx='1200' cy='300' r='500' fill='%236ab7ff' opacity='0.2'/%3E%3C/svg%3E");
+          background-size: cover;
+          background-attachment: fixed;
+        }
+
         .container {
           max-width: 600px;
-          margin: 50px auto;
           background: #ffffff;
           padding: 20px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
           border-radius: 10px;
-          font-family: 'Arial', sans-serif;
         }
 
         h2 {
           text-align: center;
           color: #2c3e50;
           margin-bottom: 20px;
-          font-size: 1.8em;
         }
 
         input {
@@ -104,13 +112,6 @@ export default function TranskripPage() {
           border: 2px solid #ced4da;
           border-radius: 8px;
           font-size: 16px;
-          transition: all 0.3s ease;
-        }
-
-        input:focus {
-          border-color: #5c9ded;
-          outline: none;
-          box-shadow: 0 0 8px rgba(92, 157, 237, 0.5);
         }
 
         button {
@@ -122,12 +123,10 @@ export default function TranskripPage() {
           font-size: 16px;
           border-radius: 8px;
           cursor: pointer;
-          transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         button:hover {
           background-color: #0056b3;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .result {
@@ -136,32 +135,29 @@ export default function TranskripPage() {
           padding: 15px;
           border-radius: 8px;
           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
         }
 
         .result h3 {
           color: #343a40;
-          font-size: 1.5em;
           margin-bottom: 10px;
         }
 
-        .result ul {
-          list-style: none;
-          padding: 0;
-        }
-
-        .result li {
+        .transkrip {
+          white-space: pre-wrap;
           background: #ffffff;
           padding: 10px;
-          margin-bottom: 8px;
           border-radius: 6px;
           border: 1px solid #dee2e6;
-          transition: background-color 0.3s ease, box-shadow 0.3s ease;
-          cursor: pointer;
+          font-size: 14px;
+          line-height: 1.6;
         }
 
-        .result li:hover {
-          background-color: #e9ecef;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        .hint {
+          text-align: center;
+          margin-top: 10px;
+          font-size: 12px;
+          color: #6c757d;
         }
 
         .error {
