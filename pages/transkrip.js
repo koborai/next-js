@@ -86,7 +86,8 @@ export default function TranskripPage() {
           justify-content: center;
           align-items: center;
           font-family: 'Arial', sans-serif;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Crect fill='%23b3e5fc' width='1600' height='900'/%3E%3Ccircle cx='400' cy='300' r='400' fill='%236ab7ff' opacity='0.6'/%3E%3Ccircle cx='800' cy='600' r='600' fill='%236ab7ff' opacity='0.4'/%3E%3Ccircle cx='1200' cy='300' r='500' fill='%236ab7ff' opacity='0.2'/%3E%3C/svg%3E");
+          backgroundImage:
+      "url(data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Crect fill='%23b3e5fc' width='1600' height='900'/%3E%3Ccircle cx='400' cy='300' r='400' fill='%236ab7ff' opacity='0.6'/%3E%3Ccircle cx='800' cy='600' r='600' fill='%236ab7ff' opacity='0.4'/%3E%3Ccircle cx='1200' cy='300' r='500' fill='%236ab7ff' opacity='0.2'/%3E%3C/svg%3E)",
           background-size: cover;
           background-attachment: fixed;
         }
