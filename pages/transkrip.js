@@ -36,6 +36,15 @@ export default function TranskripPage() {
     }
   };
 
+  const copyToClipboard = () => {
+    if (result) {
+      const fullText = result.subtitles.map((sub) => sub.f).join("\n");
+      navigator.clipboard.writeText(fullText).then(() => {
+        alert("Teks berhasil disalin!");
+      });
+    }
+  };
+
   return (
     <>
       <Head>
@@ -57,30 +66,35 @@ export default function TranskripPage() {
         {error && <div className="error">{error}</div>}
 
         {result && (
-          <div className="result">
+          <div className="result" onClick={copyToClipboard}>
             <h3>{result.title}</h3>
             <div className="transkrip">
               {result.subtitles.map((sub) => sub.f).join("\n")}
             </div>
+            <p className="hint">Klik untuk menyalin seluruh transkrip</p>
           </div>
         )}
       </div>
 
       <style jsx>{`
         body {
-          background: url("img/bg.jpg");
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(to bottom, #6ab7ff, #b3e5fc);
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Arial', sans-serif;
+          background-image: url("/img/bg.svg");
           background-size: cover;
           background-attachment: fixed;
-          background-position: center;
-          margin: 0;
-          font-family: "Arial", sans-serif;
         }
 
         .container {
           max-width: 600px;
           background: #ffffff;
           padding: 20px;
-          margin: 50px auto;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
           border-radius: 10px;
         }
@@ -88,6 +102,7 @@ export default function TranskripPage() {
         h2 {
           text-align: center;
           color: #2c3e50;
+          margin-bottom: 20px;
         }
 
         input {
@@ -112,6 +127,44 @@ export default function TranskripPage() {
 
         button:hover {
           background-color: #0056b3;
+        }
+
+        .result {
+          margin-top: 20px;
+          background: #f8f9fa;
+          padding: 15px;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+        }
+
+        .result h3 {
+          color: #343a40;
+          margin-bottom: 10px;
+        }
+
+        .transkrip {
+          white-space: pre-wrap;
+          background: #ffffff;
+          padding: 10px;
+          border-radius: 6px;
+          border: 1px solid #dee2e6;
+          font-size: 14px;
+          line-height: 1.6;
+        }
+
+        .hint {
+          text-align: center;
+          margin-top: 10px;
+          font-size: 12px;
+          color: #6c757d;
+        }
+
+        .error {
+          color: #dc3545;
+          text-align: center;
+          margin-top: 10px;
+          font-weight: bold;
         }
 
         .loader {
