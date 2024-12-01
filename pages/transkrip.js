@@ -68,11 +68,11 @@ export default function TranskripPage() {
 
       <style jsx>{`
         body {
-          margin: 0;
-          padding: 0;
-          background-image: url("/img/bg.svg");
+          background: url("img/bg.jpg");
           background-size: cover;
           background-attachment: fixed;
+          background-position: center;
+          margin: 0;
           font-family: "Arial", sans-serif;
         }
 
