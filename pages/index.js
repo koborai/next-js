@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Script from 'next/script';
 
 export default function Home() {
   return (
@@ -118,11 +119,11 @@ export default function Home() {
         Made with <i className="fas fa-heart"></i> by Minn.
       </div>
       
-      <Script src="/js/battery.js" strategy="afterInteractive" />
-      <Script src="/js/countdown.js" strategy="afterInteractive" />
-      <Script src="/js/jam.js" strategy="afterInteractive" />
-      <Script src="/js/ping.js" strategy="afterInteractive" />
-      <Script src="/js/quote.js" strategy="afterInteractive" />
+<Script src="/js/battery.js" strategy="afterInteractive" />
+<Script src="/js/countdown.js" strategy="afterInteractive" />
+<Script src="/js/jam.js" strategy="afterInteractive" />
+<Script src="/js/ping.js" strategy="afterInteractive" />
+<Script src="/js/quote.js" strategy="afterInteractive" />
       
       <style jsx>{`
         body {
