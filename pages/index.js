@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,7 +12,15 @@ export default function Home() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         />
       </Head>
-      <Navbar />
+      <div className="navbar">
+        <div className="logo">
+          <i className="fas fa-angle-double-right"></i>
+          <span>MINN</span>
+        </div>
+        <div className="icons">
+          <i className="fas fa-user-circle"></i>
+        </div>
+      </div>
       <div className="content">
         <h1>
           <i className="fas fa-home"></i>Dashboard
@@ -107,12 +114,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="footer">
+        Made with <i className="fas fa-heart"></i> by Minn.
+      </div>
+      
       <Script src="/js/battery.js" strategy="afterInteractive" />
       <Script src="/js/countdown.js" strategy="afterInteractive" />
       <Script src="/js/jam.js" strategy="afterInteractive" />
       <Script src="/js/ping.js" strategy="afterInteractive" />
       <Script src="/js/quote.js" strategy="afterInteractive" />
+      
       <style jsx>{`
         body {
             margin: 0;
